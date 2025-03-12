@@ -38,11 +38,11 @@
 <header>
   <h1>NFT Mastermind</h1>
   <nav>
-    <button id="show-home-btn">Home</button>
+    <button id="show-home-btn" onclick="window.location.href='https://nft-main-bice.vercel.app/'">Home</button>
     <button id="show-catalog-btn">NFT Catalog</button>
-    <button id="show-validations-btn">Validations</button>
-    <button id="show-pooling-btn">Pooling</button>
-    <button id="show-recommendations-btn">Recommendations</button>
+    <button id="show-validations-btn" onclick="window.location.href='https://nft-validations.vercel.app/'">Validations</button>
+    <button id="show-pooling-btn" onclick="window.location.href='https://nft-charity-eight.vercel.app/'">Pooling</button>
+    <button id="show-recommendations-btn" onclick="window.location.href='https://nft-recommendations.vercel.app/'">Recommendations</button>
     <button id="show-transaction-log-btn">Transaction Log</button>
     <button id="show-login-btn" style="display: none;">Login</button>
     <button id="show-register-btn" style="display: none;">Register</button>
@@ -52,7 +52,7 @@
 
 <!-- Halaman Depan -->
 <div id="home-section" class="section active">
-  <iframe id="home-iframe" class="iframe-section" src="http://localhost:3004" style="display: block;"></iframe>
+  <!-- Hapus iframe, simpan galeri dan Q&A -->
   <div class="nft-gallery" id="nft-gallery"></div>
   <div class="qa-section">
     <h2>Questions & Answers</h2>
