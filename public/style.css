@@ -10,9 +10,43 @@ h1, h2 {
   margin-bottom: 10px;
 }
 
-#login-form, #register-form, #pool {
+header {
+  background: #333;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  flex-grow: 1;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+nav button {
+  margin: 0 5px;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background-color: #0056b3;
+}
+
+#register-section, #catalog-section, #transaction-log-section, #validations-section, #pooling-section, #recommendations-section {
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
   background-color: white;
@@ -21,7 +55,7 @@ h1, h2 {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-input[type="email"], input[type="password"] {
+input[type="email"], input[type="password"], input[type="text"] {
   width: 100%;
   padding: 8px;
   margin: 5px 0;
@@ -43,16 +77,85 @@ button:hover {
   background-color: #0056b3;
 }
 
-#recommendations p {
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
-  border-radius: 4px;
+.nft-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
 }
 
-nav {
-  margin: 10px 0;
+.nft-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.nft-card img {
+  max-width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.qa-section {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.qa-item {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.qa-item h3 {
+  margin: 0;
+}
+
+.qa-answer {
+  display: none;
+  padding: 10px 0;
+}
+
+.qa-item.active .qa-answer {
+  display: block;
+}
+
+.section {
+  display: none;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.section.active {
+  display: block;
+  opacity: 1;
+}
+
+.search-bar {
+  padding: 20px;
+  text-align: center;
+}
+
+.search-bar input {
+  padding: 5px;
+  width: 300px;
+}
+
+.transaction-log {
+  padding: 20px;
+}
+
+.transaction-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
 }
 
 a {
@@ -62,4 +165,19 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.qa-link {
+  display: flex;
+  align-items: center;
+}
+
+.qa-link button {
+  background-color: #28a745;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.qa-link button:hover {
+  background-color: #218838;
 }
