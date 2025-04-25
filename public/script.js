@@ -92,19 +92,30 @@ async function loadNFTCatalog(searchQuery = '') {
 
 async function loadTransactionLog(searchQuery = '') {
   try {
+    console.log('Loading transaction log with query:', searchQuery);
     let query = supabase
       .from('transactions')
       .select('id, nft_id, status, proof_url, created_at, seller_id, buyer_id, amount')
       .order('created_at', { ascending: false });
     if (searchQuery) {
-      query = query.or(`nft_id.ilike.%${searchQuery}%,status.ilike.%${searchQuery}%,proof_url.ilike.%${searchQuery}%`);
+      const isNumeric = !isNaN(searchQuery) && searchQuery.trim() !== '';
+      if (isNumeric) {
+        // Cari nft_id sebagai integer
+        query = query.eq('nft_id', parseInt(searchQuery));
+      } else {
+        // Cari string di status, proof_url, seller_id, buyer_id
+        query = query.or(
+          `status.ilike.%${searchQuery}%,proof_url.ilike.%${searchQuery}%,seller_id.ilike.%${searchQuery}%,buyer_id.ilike.%${searchQuery}%`
+        );
+      }
     }
     const { data, error } = await query;
     if (error) throw error;
+    console.log('Transaction data:', data);
     const transactionList = document.getElementById('transaction-list');
     transactionList.innerHTML = '';
     if (data.length === 0) {
-      transactionList.innerHTML = '<p>No transactions yet.</p>';
+      transactionList.innerHTML = '<p>No transactions found.</p>';
     } else {
       data.forEach(transaction => {
         transactionList.innerHTML += `
@@ -112,7 +123,7 @@ async function loadTransactionLog(searchQuery = '') {
             <p>ID: ${transaction.id}</p>
             <p>NFT ID: ${transaction.nft_id}</p>
             <p>Status: ${transaction.status || 'Unknown'}</p>
-            <p>Proof URL: <a href="${transaction.proof_url}" target="_blank">${transaction.proof_url}</a></p>
+            <p>Proof URL: <a href="${transaction.proof_url || '#'}" target="_blank">${transaction.proof_url || 'No proof'}</a></p>
             <p>Created At: ${new Date(transaction.created_at).toLocaleString()}</p>
             <p>Seller ID: ${transaction.seller_id}</p>
             <p>Buyer ID: ${transaction.buyer_id}</p>
@@ -169,10 +180,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchQuery = e.target.value.trim();
     loadNFTCatalog(searchQuery);
   });
-  document.getElementById('register-btn')?.addEventListener('click', () => {
-    const email = document.getElementById('reg-email').value;
-    const password = document.getElementById('reg-password').value;
-    register(email, password);
-  });
+  const transactionSearch = document.getElementById('transaction-search');
+  if (transactionSearch) {
+    transactionSearch.addEventListener('input', (e) => {
+      const searchQuery = e.target.value.trim();
+      console.log('Transaction search triggered:', searchQuery);
+      loadTransactionLog(searchQuery);
+    });
+  }
   showSection('home-section');
 });
