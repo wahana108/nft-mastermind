@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = 'https://nft-validations.vercel.app/';
   });
   document.getElementById('show-pooling-btn').addEventListener('click', () => {
-    window.location.href = 'https://nft-charity-eight.vercel.app/';
+    window.location.href = 'https://nft-charity-kappa.vercel.app/';
   });
   document.getElementById('show-recommendations-btn').addEventListener('click', () => {
     window.location.href = 'https://nft-recommendations.vercel.app/';
