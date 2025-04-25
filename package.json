@@ -1,18 +1,17 @@
 {
-    "name": "nft-charity",
+    "name": "nft-mastermind",
     "version": "1.0.0",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js"
+      "start": "node server.js"
     },
     "dependencies": {
-        "@supabase/supabase-js": "^2.49.1",
-        "express": "^4.21.2",
-        "sqlite3": "^5.1.7"
+      "@supabase/supabase-js": "^2.49.1",
+      "express": "^4.21.2"
     },
     "description": "",
     "keywords": [],
     "author": "",
     "license": "ISC",
     "type": "commonjs"
-}
+  }
